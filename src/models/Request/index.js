@@ -3,11 +3,19 @@ import { createService } from '../../workflows';
 let requests = [
   {
     id: '111',
-    type: 'VACATION_REQUEST',
+    type: 'UNIT_TEST_REQUEST',
   },
   {
     id: '222',
-    type: 'SICK_APPLICATION_REQUEST',
+    type: 'INTEGRATION_TEST_REQUEST',
+  },
+   {
+    id: '333',
+    type: 'SYSTEMS_TEST_REQUEST',
+  },
+   {
+    id: '444',
+    type: 'ACCEPTANCE_TEST_REQUEST',
   },
 ];
 
