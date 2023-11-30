@@ -1,6 +1,6 @@
 import { GUARDS } from '../../workflows/request';
 
-function getVacationRequestInfo() {
+function getPipelineRequestInfo() {
   return {
     testsLeft: 10,
     maxTests: 22,
@@ -36,7 +36,7 @@ export default {
   Request: {
     payload: async (request, _, context) => ({
       ...request.payload,
-      ...getVacationRequestInfo(request, context),
+      ...getPipelineRequestInfo(request, context),
     }),
     currentState: (request, _, context) => {
       if (!request.currentState || !request.currentState.nextEvents) return request.currentState;
