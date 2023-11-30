@@ -2,9 +2,9 @@ import { GUARDS } from '../../workflows/request';
 
 function getVacationRequestInfo() {
   return {
-    vacationLeft: 10,
-    totalAllowedVacation: 22,
-    lastVacation: new Date('2020-01-01'),
+    testsLeft: 10,
+    maxTests: 22,
+    mostRecentTestDate: new Date('2020-01-01'),
   };
 }
 
