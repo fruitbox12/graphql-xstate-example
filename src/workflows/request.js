@@ -1,8 +1,8 @@
 import { Machine } from 'xstate';
 
 export const GUARDS = {
-  SUBMIT: (request, context) => context.user.id === request.createdByUserId,
-  SAVE: (request, context) => context.user.id === request.createdByUserId,
+  PULLREQUEST: (request, context) => context.user.id === request.createdByUserId,
+  PUSH: (request, context) => context.user.id === request.createdByUserId,
   APPROVE: (request, context) => (context.user.roles
     ? context.user.roles.includes('admin')
     && request.createdByUserId !== context.user.id : false),
@@ -14,20 +14,20 @@ export const GUARDS = {
 
 export default Machine({
   id: 'request',
-  initial: 'draft',
+  initial: 'commit',
   states: {
-    draft: {
+    commit: {
       on: {
-        SAVE: 'draft',
-        SUBMIT: {
+        PUSH: 'commit',
+        PULLREQUEST: {
           target: 'pending',
-          cond: (context) => GUARDS.SUBMIT(context.request, context.reqContext),
+          cond: (context) => GUARDS.PULLREQUEST(context.request, context.reqContext),
         },
       },
     },
     pending: {
       on: {
-        SAVE: 'draft',
+        PUSH: 'commit',
         APPROVE: {
           target: 'approved',
           cond: (context) => GUARDS.APPROVE(context.request, context.reqContext),
